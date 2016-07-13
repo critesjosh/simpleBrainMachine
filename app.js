@@ -61,10 +61,38 @@
  { '0',      0 }
  */
 
+//creat the audio context
+var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+//create and oscillator that will be the data for the sound
+var oscillator = audioCtx.createOscillator();
+var gainNode = audioCtx.createGain();
+
+//connect the oscillator to volume control
+oscillator.connect(gainNode);
+gainNode.connect(audioCtx.destination);
+
+//volume
+gainNode.gain.value = 0.3;
+
+oscillator.type = 'square';
+oscillator.frequency.value = 2000;
+oscillator.start();
+
+var myArrayBuffer = audioCtx.createBuffer(2, 22050, 44100);
+
+//var bufferData = myArrayBuffer.getChannelData(channel);
+
+var source = audioCtx.createBufferSource();
+source.buffer = myArrayBuffer;
+source.connect(audioCtx.destination);
+source.start();
+
+
+//animation to 'blink' light going to the left and right eyes.
 var switchColors = function() {
   $('#div').toggleClass('div');
 }
-
 
 window.setInterval(function(){
 switchColors();
