@@ -65,19 +65,32 @@
 var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
 //create and oscillator that will be the data for the sound
-var oscillator = audioCtx.createOscillator();
-var gainNode = audioCtx.createGain();
+var oscillatorLeft = audioCtx.createOscillator();
+var oscillatorRight = audioCtx.createOscillator();
+var gainNodeLeft = audioCtx.createGain();
+var gainNodeRight = audioCtx.createGain();
 
 //connect the oscillator to volume control
-oscillator.connect(gainNode);
-gainNode.connect(audioCtx.destination);
+oscillatorLeft.connect(gainNodeLeft);
+gainNodeLeft.connect(audioCtx.destination);
+oscillatorRight.connect(gainNodeRight);
+gainNodeRight.connect(audioCtx.destination);
 
 //volume
-gainNode.gain.value = 0.3;
+gainNodeLeft.gain.value = 0.1;
+gainNodeRight.gain.value = 0.1;
 
-oscillator.type = 'square';
-oscillator.frequency.value = 2000;
-oscillator.start();
+oscillatorLeft.type = 'sine';
+var leftFrequency = oscillatorLeft.frequency.value;
+leftFrequency = 505;
+oscillatorLeft.start();
+
+oscillatorRight.type = 'sine';
+var rightFrequency = oscillatorRight.frequency.value;
+rightFrequency = 500;
+oscillatorRight.start();
+
+
 
 var myArrayBuffer = audioCtx.createBuffer(2, 22050, 44100);
 
