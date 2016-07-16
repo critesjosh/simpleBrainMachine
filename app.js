@@ -63,6 +63,8 @@
 
  856 seconds = 14.26666 minutes
  */
+var timeoutID;
+
 var brainMachine = function(brainWave) {
   var hz;
 
@@ -80,7 +82,7 @@ var brainMachine = function(brainWave) {
       hz = 1.5;
       break;
   }
-
+  //frequency at which the screen will flash
   var visualFrequency = (1/hz) * 1000;
 
   //create and oscillator that will be the data for the sound
@@ -119,13 +121,11 @@ var brainMachine = function(brainWave) {
   }, visualFrequency);
 }
 
-var timeoutID;
-
 var clear = function(){
   window.clearTimeout(timeoutID);
 }
 
-var interval = function(brainWave, time) {
+var interval = function(brainWave) {
     console.log(brainWave);
     clear();
     brainMachine(brainWave);
@@ -134,92 +134,99 @@ var interval = function(brainWave, time) {
 //create the audio context
 var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-var seconds = 60;
+$('#start').click(function(){
+  run();
+});
 
-interval('b');
-var time = 1000 * seconds;
-window.setTimeout(function(){ return interval('a'); }, time);
-time += 10000;
-window.setTimeout(function(){ return interval('b'); }, time);
-time += 20000;
-window.setTimeout(function(){ return interval('a'); }, time);
-time += 15000;
-window.setTimeout(function(){ return interval('b'); }, time);
-time += 15000;
-window.setTimeout(function(){ return interval('a'); }, time);
-time += 20000;
-window.setTimeout(function(){ return interval('b'); }, time);
-time += 10000;
-window.setTimeout(function(){ return interval('a'); }, time);
-time += 30000;
-window.setTimeout(function(){ return interval('b'); }, time);
-time += 5000;
-window.setTimeout(function(){ return interval('a'); }, time);
-time += 60000;
-window.setTimeout(function(){ return interval('t'); }, time);
-time += 10000;
-window.setTimeout(function(){ return interval('a'); }, time);
-time += 30000;
-window.setTimeout(function(){ return interval('t'); }, time);
-time += 20000;
-window.setTimeout(function(){ return interval('a'); }, time);
-time += 30000;
-window.setTimeout(function(){ return interval('t'); }, time);
-time += 30000;
-window.setTimeout(function(){ return interval('a'); }, time);
-time += 15000;
-window.setTimeout(function(){ return interval('t'); }, time);
-time += 60000;
-window.setTimeout(function(){ return interval('a'); }, time);
-time += 15000;
-window.setTimeout(function(){ return interval('b'); }, time);
-time += 1000;
-window.setTimeout(function(){ return interval('a'); }, time);
-time += 15000;
-window.setTimeout(function(){ return interval('t'); }, time);
-time += 60000;
-window.setTimeout(function(){ return interval('d'); }, time);
-time += 1000;
-window.setTimeout(function(){ return interval('t'); }, time);
-time += 10000;
-window.setTimeout(function(){ return interval('d'); }, time);
-time += 1000;
-window.setTimeout(function(){ return interval('t'); }, time);
-time += 10000;
-window.setTimeout(function(){ return interval('d'); }, time);
-time += 1000;
-window.setTimeout(function(){ return interval('t'); }, time);
-time += 30000;
-window.setTimeout(function(){ return interval('a'); }, time);
-time += 15000;
-window.setTimeout(function(){ return interval('b'); }, time);
-time += 1000;
-window.setTimeout(function(){ return interval('a'); }, time);
-time += 15000;
-window.setTimeout(function(){ return interval('t'); }, time);
-time += 30000;
-window.setTimeout(function(){ return interval('a'); }, time);
-time += 15000;
-window.setTimeout(function(){ return interval('b'); }, time);
-time += 1000;
-window.setTimeout(function(){ return interval('a'); }, time);
-time += 20000;
-window.setTimeout(function(){ return interval('b'); }, time);
-time += 5000;
-window.setTimeout(function(){ return interval('a'); }, time);
-time += 20000;
-window.setTimeout(function(){ return interval('b'); }, time);
-time += 15000;
-window.setTimeout(function(){ return interval('a'); }, time);
-time += 15000;
-window.setTimeout(function(){ return interval('b'); }, time);
-time += 20000;
-window.setTimeout(function(){ return interval('a'); }, time);
-time += 10000;
-window.setTimeout(function(){ return interval('b'); }, time);
-time += 25000;
-window.setTimeout(function(){ return interval('a'); }, time);
-time += 5000;
-window.setTimeout(function(){ return interval('b'); }, time);
-time += 60000;
-window.setTimeout(function(){ return interval('b'); }, time);
+var run = function(){
+
+  var seconds = 60;
+
+  interval('b');
+  var time = 1000 * seconds;
+  window.setTimeout(function(){ return interval('a'); }, time);
+  time += 10000;
+  window.setTimeout(function(){ return interval('b'); }, time);
+  time += 20000;
+  window.setTimeout(function(){ return interval('a'); }, time);
+  time += 15000;
+  window.setTimeout(function(){ return interval('b'); }, time);
+  time += 15000;
+  window.setTimeout(function(){ return interval('a'); }, time);
+  time += 20000;
+  window.setTimeout(function(){ return interval('b'); }, time);
+  time += 10000;
+  window.setTimeout(function(){ return interval('a'); }, time);
+  time += 30000;
+  window.setTimeout(function(){ return interval('b'); }, time);
+  time += 5000;
+  window.setTimeout(function(){ return interval('a'); }, time);
+  time += 60000;
+  window.setTimeout(function(){ return interval('t'); }, time);
+  time += 10000;
+  window.setTimeout(function(){ return interval('a'); }, time);
+  time += 30000;
+  window.setTimeout(function(){ return interval('t'); }, time);
+  time += 20000;
+  window.setTimeout(function(){ return interval('a'); }, time);
+  time += 30000;
+  window.setTimeout(function(){ return interval('t'); }, time);
+  time += 30000;
+  window.setTimeout(function(){ return interval('a'); }, time);
+  time += 15000;
+  window.setTimeout(function(){ return interval('t'); }, time);
+  time += 60000;
+  window.setTimeout(function(){ return interval('a'); }, time);
+  time += 15000;
+  window.setTimeout(function(){ return interval('b'); }, time);
+  time += 1000;
+  window.setTimeout(function(){ return interval('a'); }, time);
+  time += 15000;
+  window.setTimeout(function(){ return interval('t'); }, time);
+  time += 60000;
+  window.setTimeout(function(){ return interval('d'); }, time);
+  time += 1000;
+  window.setTimeout(function(){ return interval('t'); }, time);
+  time += 10000;
+  window.setTimeout(function(){ return interval('d'); }, time);
+  time += 1000;
+  window.setTimeout(function(){ return interval('t'); }, time);
+  time += 10000;
+  window.setTimeout(function(){ return interval('d'); }, time);
+  time += 1000;
+  window.setTimeout(function(){ return interval('t'); }, time);
+  time += 30000;
+  window.setTimeout(function(){ return interval('a'); }, time);
+  time += 15000;
+  window.setTimeout(function(){ return interval('b'); }, time);
+  time += 1000;
+  window.setTimeout(function(){ return interval('a'); }, time);
+  time += 15000;
+  window.setTimeout(function(){ return interval('t'); }, time);
+  time += 30000;
+  window.setTimeout(function(){ return interval('a'); }, time);
+  time += 15000;
+  window.setTimeout(function(){ return interval('b'); }, time);
+  time += 1000;
+  window.setTimeout(function(){ return interval('a'); }, time);
+  time += 20000;
+  window.setTimeout(function(){ return interval('b'); }, time);
+  time += 5000;
+  window.setTimeout(function(){ return interval('a'); }, time);
+  time += 20000;
+  window.setTimeout(function(){ return interval('b'); }, time);
+  time += 15000;
+  window.setTimeout(function(){ return interval('a'); }, time);
+  time += 15000;
+  window.setTimeout(function(){ return interval('b'); }, time);
+  time += 20000;
+  window.setTimeout(function(){ return interval('a'); }, time);
+  time += 10000;
+  window.setTimeout(function(){ return interval('b'); }, time);
+  time += 25000;
+  window.setTimeout(function(){ return interval('a'); }, time);
+  time += 5000;
+  window.setTimeout(function(){ return interval('b'); }, time);
+  time += 60000;
+  window.setTimeout(function(){ return interval('b'); }, time);
+}
