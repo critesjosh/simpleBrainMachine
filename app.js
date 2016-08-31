@@ -114,28 +114,38 @@ var brainMachine = function(brainWave) {
   //animation to 'blink' light going to the left and right eyes.
   var switchColors = function() {
     $('#div').toggleClass('div');
-  }
+  };
 
   timeoutID = window.setInterval(function(){
     switchColors();
   }, visualFrequency);
-}
+};
 
 var clear = function(){
   window.clearTimeout(timeoutID);
-}
+};
 
 var interval = function(brainWave) {
     console.log(brainWave);
     clear();
     brainMachine(brainWave);
-}
+};
+
+var intervalLength = function(brainWave, intervalTime){
+  window.setTimeout(function(){ return interval(brainWave); }, time);
+  time += intervalTime;
+};
 
 //create the audio context
 var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
 $('#start').click(function(){
   run();
+});
+
+$('#stop').click(function(){
+  console.log('stop');
+  return;
 });
 
 var run = function(){
@@ -229,4 +239,4 @@ var run = function(){
   window.setTimeout(function(){ return interval('b'); }, time);
   time += 60000;
   window.setTimeout(function(){ return interval('b'); }, time);
-}
+};

@@ -10,6 +10,6 @@ Adafruit Brain Machine. More information can be found [here.](https://www.adafru
 about seizures.**
 
 ##Using the application
-Visit [this site](dreamcatcherproject.net/josh/simpleBrainMachine) to launch the application.
+Visit [this site](https://dreamcatcherproject.net/josh/simpleBrainMachine) to launch the application.
 This app requires a virtual reality viewing environment. Headphones are required for the
 best experience.
